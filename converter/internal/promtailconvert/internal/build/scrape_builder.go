@@ -68,9 +68,6 @@ func (s *ScrapeConfigBuilder) Validate() {
 	if len(s.cfg.ServiceDiscoveryConfig.OpenstackSDConfigs) != 0 {
 		s.diags.Add(diag.SeverityLevelError, "openstack_sd_configs is not supported")
 	}
-	if len(s.cfg.ServiceDiscoveryConfig.TritonSDConfigs) != 0 {
-		s.diags.Add(diag.SeverityLevelError, "triton_sd_configs is not supported")
-	}
 }
 
 func (s *ScrapeConfigBuilder) Sanitize() {
