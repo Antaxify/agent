@@ -96,7 +96,7 @@ func validateScrapeConfigs(scrapeConfigs []*prom_config.ScrapeConfig) diag.Diagn
 			case *prom_aws.LightsailSDConfig:
 				diags.AddAll(validateDiscoveryLightsail(sdc))
 			case *prom_zk.ServersetSDConfig:
-				diags.AddAll(validateDiscoveryServerset(sdc))
+				diags.AddAll(ValidateDiscoveryServerset(sdc))
 			default:
 				diags.Add(diag.SeverityLevelError, fmt.Sprintf("unsupported service discovery %s was provided", serviceDiscoveryConfig.Name()))
 			}
