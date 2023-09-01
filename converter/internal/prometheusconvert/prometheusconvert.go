@@ -21,6 +21,7 @@ import (
 	prom_gce "github.com/prometheus/prometheus/discovery/gce"
 	prom_kubernetes "github.com/prometheus/prometheus/discovery/kubernetes"
 	prom_docker "github.com/prometheus/prometheus/discovery/moby"
+	prom_zk "github.com/prometheus/prometheus/discovery/zookeeper"
 	"github.com/prometheus/prometheus/storage"
 
 	_ "github.com/prometheus/prometheus/discovery/install" // Register Prometheus SDs
@@ -152,6 +153,9 @@ func appendServiceDiscoveryConfigs(pb *prometheusBlocks, serviceDiscoveryConfig 
 		case *prom_aws.LightsailSDConfig:
 			labelCounts["lightsail"]++
 			exports = appendDiscoveryLightsail(pb, common.LabelWithIndex(labelCounts["lightsail"]-1, label), sdc)
+		case *prom_zk.ServersetSDConfig:
+			labelCounts["serverset"]++
+			exports = appendDiscoveryServerset(pb, common.LabelWithIndex(labelCounts["serverset"]-1, label), sdc)
 		}
 
 		targets = append(exports.Targets, targets...)

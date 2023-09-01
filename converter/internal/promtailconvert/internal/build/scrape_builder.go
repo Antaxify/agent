@@ -57,6 +57,7 @@ func (s *ScrapeConfigBuilder) Validate() {
 	if len(s.cfg.ServiceDiscoveryConfig.DockerSwarmSDConfigs) != 0 {
 		s.diags.Add(diag.SeverityLevelError, "dockerswarm_sd_configs is not supported")
 	}
+	//TODO(thampiotr): Determine if we want to support this?
 	if len(s.cfg.ServiceDiscoveryConfig.ServersetSDConfigs) != 0 {
 		s.diags.Add(diag.SeverityLevelError, "serverset_sd_configs is not supported")
 	}
